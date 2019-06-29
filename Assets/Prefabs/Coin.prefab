@@ -238,5 +238,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDie: 0
-  scoreManager: {fileID: 4314491619219723325, guid: f8d034c77277f494e975ec167470718b,
-    type: 3}

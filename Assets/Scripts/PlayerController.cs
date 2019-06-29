@@ -187,11 +187,12 @@ public class PlayerController : MonoBehaviour
             }
 
 
-         playerSpriteRenderer.color = new Color(playerSpriteRenderer.color.r, playerSpriteRenderer.color.g, playerSpriteRenderer.color.b, newAlpha);
+            playerSpriteRenderer.color = new Color(playerSpriteRenderer.color.r, playerSpriteRenderer.color.g, playerSpriteRenderer.color.b, newAlpha);
 
-        if (playerRigidbody2D.position.y < deathHeight)
-        {
-            SceneManager.LoadScene(1);
+            if (playerRigidbody2D.position.y < deathHeight)
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 

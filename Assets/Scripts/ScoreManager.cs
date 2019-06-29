@@ -25,7 +25,7 @@ public class ScoreManager : MonoBehaviour
 
         if (score > 2000)
         {
-            UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
+            //UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
         }
 
         if (currentTime <= 0) ;

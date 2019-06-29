@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 698599844990676262}
   - component: {fileID: 5969306726710463056}
   m_Layer: 0
-  m_Name: MushroomVisual
+  m_Name: Mushroom
   m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,11 +151,11 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 114745729042908536, guid: 861e1610f86a445c5bf1949dbbb82c49, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 698599844990676262}
-  - key: {fileID: 114120127345450046, guid: 861e1610f86a445c5bf1949dbbb82c49, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: 114383900638867368, guid: 861e1610f86a445c5bf1949dbbb82c49, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 698599844990676262}
   - key: {fileID: 114745729042908536, guid: e25277a4b2b3646b0922f7f6b15044f9, type: 2}
     value: {fileID: 698599844990676262}

@@ -20,6 +20,8 @@ public class Coin : MonoBehaviour
     void Update()
     {
         if (timeToDie)
+        {
             Destroy(this.gameObject);
+        }
     }
 }

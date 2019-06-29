@@ -9,6 +9,8 @@ public class FollowingCamera : MonoBehaviour
 
     void Update()
     {
+        playerTransform = GameObject.Find("Player").transform;
+
         float playerPositionX = playerTransform.position.x;
 
         if (playerPositionX > transform.position.x)

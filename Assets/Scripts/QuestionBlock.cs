@@ -7,6 +7,7 @@ public class QuestionBlock : MonoBehaviour
 	public int timesToBeHit = 1;
     public GameObject prefabToAppear;
     public bool isSecret;
+    public bool isInvisible;
 
     private Animator anim;
 
@@ -15,7 +16,10 @@ public class QuestionBlock : MonoBehaviour
         anim = GetComponentInParent<Animator>();
         if (isSecret) //if it's a secret Question block
             anim.SetBool("IsSecret", true);
-
+        if (isInvisible)
+        {
+            gameObject.GetComponent<Renderer>().enabled = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
