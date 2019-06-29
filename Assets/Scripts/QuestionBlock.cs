@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class QuestionBlock : MonoBehaviour
 {
-	public int timesToBeHit = 1;
+    public int timesToBeHit = 1;
     public GameObject prefabToAppear;
     public bool isSecret;
     public bool isInvisible;
+    SpriteRenderer rend;
 
     private Animator anim;
 
@@ -16,9 +17,10 @@ public class QuestionBlock : MonoBehaviour
         anim = GetComponentInParent<Animator>();
         if (isSecret) //if it's a secret Question block
             anim.SetBool("IsSecret", true);
-        if (isInvisible)
+        if (isInvisible) //if it's an invisible Question block
         {
-            gameObject.GetComponent<Renderer>().enabled = false;
+            rend = this.gameObject.GetComponentInParent<SpriteRenderer>();
+            rend.enabled = false;
         }
     }
 
@@ -28,6 +30,13 @@ public class QuestionBlock : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player" && IsPlayerBelow(collision.gameObject))
             {
+                if (isInvisible)
+                {
+                    rend.enabled = true;
+                    isInvisible = false;
+                    //BoxCollider2D coll = this.gameObject.GetComponentInParent<BoxCollider2D>();
+                    //coll.usedByEffector = false;
+                }
                 collision.gameObject.GetComponent<PlayerController>().isJumping = false; //Mario can't jump higher
                 Instantiate(prefabToAppear, transform.parent.transform.position, Quaternion.identity); //instantiate other obj
                 timesToBeHit--;

@@ -3544,6 +3544,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1216577624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4907265176563318441, guid: 9c8845d80ddc44a9b91ff6a22c600817,
+    type: 3}
+  m_PrefabInstance: {fileID: 1270062138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!251 &1216577629
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216577624}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 180
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 90
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1221497654
 GameObject:
   m_ObjectHideFlags: 0
@@ -3790,12 +3815,37 @@ PrefabInstance:
       propertyPath: isInvisible
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4907265176563318442, guid: 9c8845d80ddc44a9b91ff6a22c600817,
+        type: 3}
+      propertyPath: targetGameObject
+      value: 
+      objectReference: {fileID: 939719268}
     - target: {fileID: 774756388567292981, guid: 9c8845d80ddc44a9b91ff6a22c600817,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300002, guid: 2de084a4ffb6c4b4eaa2533f3f236ae2,
         type: 3}
+    - target: {fileID: 4907265176563318445, guid: 9c8845d80ddc44a9b91ff6a22c600817,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907265176563318445, guid: 9c8845d80ddc44a9b91ff6a22c600817,
+        type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907265176563318445, guid: 9c8845d80ddc44a9b91ff6a22c600817,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907265176563318445, guid: 9c8845d80ddc44a9b91ff6a22c600817,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c8845d80ddc44a9b91ff6a22c600817, type: 3}
 --- !u!1 &1291499127
