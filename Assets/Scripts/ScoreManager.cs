@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
     public int startTimeSeconds = 400;
+    public Text scoreText;
+    public Text coinText;
 
     private float currentTime = 0;
     private int score = 0;
@@ -31,6 +34,8 @@ public class ScoreManager : MonoBehaviour
         if (currentTime <= 0) ;
 			//RESTART
 
+        scoreText.text = score.ToString("D6");
+        coinText.text = coins.ToString("D2");
     }
     ////GETS///////////////////////
     public float GetCurrentTime()
