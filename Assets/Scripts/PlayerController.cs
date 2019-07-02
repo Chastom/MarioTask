@@ -229,6 +229,17 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void FinishLevel()
+    {
+        playerAnimator.SetBool("grabbing", true);
+        playerRigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        //maxVerticalSpeed = 2;
+        playerRigidbody2D.velocity = new Vector2(0, 0);
+        playerRigidbody2D.gravityScale = 1.4f;
+        playerRigidbody2D.drag = 1.1f;
+        playerRigidbody2D.mass = 0.75f;
+    }
+
     void FlipSprite()
     {
         isFacingRight = !isFacingRight;

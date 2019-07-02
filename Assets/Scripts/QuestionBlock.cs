@@ -17,7 +17,7 @@ public class QuestionBlock : MonoBehaviour
         anim = GetComponentInParent<Animator>();
         if (isSecret) //if it's a secret Question block
             anim.SetBool("IsSecret", true);
-        if (isInvisible) //if it's an invisible Question block
+        if (isInvisible) //if it's an invisible Question block we do not render it
         {
             rend = this.gameObject.GetComponentInParent<SpriteRenderer>();
             rend.enabled = false;
@@ -30,12 +30,17 @@ public class QuestionBlock : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player" && IsPlayerBelow(collision.gameObject))
             {
+                /*
+                  if the block is set to invisible and is hit by the player
+                  we make it visible and remove the platform effect to
+                  make the Question block feel solid
+                */ 
                 if (isInvisible)
                 {
                     rend.enabled = true;
                     isInvisible = false;
-                    //BoxCollider2D coll = this.gameObject.GetComponentInParent<BoxCollider2D>();
-                    //coll.usedByEffector = false;
+                    BoxCollider2D coll = this.gameObject.GetComponentInParent<BoxCollider2D>();
+                    coll.usedByEffector = false;
                 }
                 collision.gameObject.GetComponent<PlayerController>().isJumping = false; //Mario can't jump higher
                 Instantiate(prefabToAppear, transform.parent.transform.position, Quaternion.identity); //instantiate other obj
