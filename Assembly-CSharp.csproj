@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Brick.cs" />
      <Compile Include="Assets\Scripts\BrickBreak.cs" />
      <Compile Include="Assets\Scripts\Coin.cs" />
+     <Compile Include="Assets\Scripts\CutsceneActivator.cs" />
      <Compile Include="Assets\Scripts\FollowingCamera.cs" />
      <Compile Include="Assets\Scripts\GoalPole.cs" />
      <Compile Include="Assets\Scripts\Goomba.cs" />

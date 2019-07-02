@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isJumping = false;
 
-	[HideInInspector]
+    [HideInInspector]
     public bool poweredUp = false;
 
     [HideInInspector]
@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     private PlayerController instance = null;
 
     private bool takeAwayControll = false; //taking away control so Mario would not stick to the side
+    private bool finishedLvl = false;      //freezing mario if level is finished (jumped on the goal pole)
 
     private void Awake()
     {
@@ -98,11 +99,14 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, new Vector2(0.4f, 0.1f), 0f, Vector2.down, groundCheckRadius, groundMask); //using this for a bigger and more accurate ground check
         isTouchingGround = (hit.collider != null) ? true : false;
 
-        movementInput = Input.GetAxis("Horizontal");
+        if (!finishedLvl)
+        {
+            movementInput = Input.GetAxis("Horizontal");
+        }
 
         CheckIfStuck(); //Checks if Mario is trying to walk into the wall and get stuck
 
-        if (!isDead)
+        if (!isDead && !finishedLvl)
         {
             if ((playerRigidbody2D.velocity.x > 0 && !isFacingRight) || (playerRigidbody2D.velocity.x < 0 && isFacingRight))
             {
@@ -205,7 +209,7 @@ public class PlayerController : MonoBehaviour
             playerCapsuleCollider2D.size = new Vector2(0.9f, 2);
             poweredUp = true;
         }
-        
+
     }
 
     public void Die()
@@ -225,15 +229,19 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("dead", true);
             playerCapsuleCollider2D.enabled = false;
             isDead = true;
-        }        
-        
+        }
+
     }
 
+    /// <summary>
+    /// Sets mario animation to grab the pole, also rigidbody
+    /// is being forced to fall down by freezing 
+    /// </summary>
     public void FinishLevel()
     {
+        finishedLvl = true;
         playerAnimator.SetBool("grabbing", true);
         playerRigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        //maxVerticalSpeed = 2;
         playerRigidbody2D.velocity = new Vector2(0, 0);
         playerRigidbody2D.gravityScale = 1.4f;
         playerRigidbody2D.drag = 1.1f;
