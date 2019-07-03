@@ -5,14 +5,12 @@ using UnityEngine;
 public class GoalPole : MonoBehaviour
 {
     public GameObject flag;
-    private AudioSource audioSource;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            audioSource = GetComponent<AudioSource>();
-            audioSource.Play();
+            GetComponent<AudioSource>().Play();
 
             collision.collider.GetComponent <PlayerController>().FinishLevel();
             

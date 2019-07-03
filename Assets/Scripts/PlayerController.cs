@@ -96,6 +96,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (playerRigidbody2D.position.y < deathHeight)
+        {
+            SceneManager.LoadScene("Level1");
+        }
         RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, new Vector2(0.4f, 0.1f), 0f, Vector2.down, groundCheckRadius, groundMask); //using this for a bigger and more accurate ground check
         isTouchingGround = (hit.collider != null) ? true : false;
 
@@ -192,11 +196,6 @@ public class PlayerController : MonoBehaviour
 
 
             playerSpriteRenderer.color = new Color(playerSpriteRenderer.color.r, playerSpriteRenderer.color.g, playerSpriteRenderer.color.b, newAlpha);
-
-            if (playerRigidbody2D.position.y < deathHeight)
-            {
-                SceneManager.LoadScene(1);
-            }
         }
     }
 
@@ -235,7 +234,10 @@ public class PlayerController : MonoBehaviour
 
     /// <summary>
     /// Sets mario animation to grab the pole, also rigidbody
-    /// is being forced to fall down by freezing 
+    /// is being forced to fall down by freezing controlls
+    /// of a player and rigidbody x axes movement. Also removing
+    /// any velocity and modifying  rigidbody parameters
+    /// to exactly match the falling speed of the flag
     /// </summary>
     public void FinishLevel()
     {
@@ -246,6 +248,11 @@ public class PlayerController : MonoBehaviour
         playerRigidbody2D.gravityScale = 1.4f;
         playerRigidbody2D.drag = 1.1f;
         playerRigidbody2D.mass = 0.75f;
+    }
+
+    public bool HasFinished()
+    {
+        return finishedLvl;
     }
 
     void FlipSprite()

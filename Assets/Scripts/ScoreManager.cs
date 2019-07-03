@@ -1,13 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
     public int startTimeSeconds = 400;
     public Text scoreText;
     public Text coinText;
+    public Text timeText;
+    public PlayerController playerController;
 
     private float currentTime = 0;
     private int score = 0;
@@ -26,16 +30,16 @@ public class ScoreManager : MonoBehaviour
         currentTime = currentTime - Time.deltaTime;
         goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
 
-        if (score > 2000)
+        if (currentTime <= 0 && !playerController.HasFinished())
         {
-            //UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
+            //if time runs out while playing cutscene, we do not reload level
+            SceneManager.LoadScene("Level1");
         }
 
-        if (currentTime <= 0) ;
-			//RESTART
-
+        //setting UI text to current data
         scoreText.text = score.ToString("D6");
         coinText.text = coins.ToString("D2");
+        timeText.text = ((int)Math.Truncate(currentTime)).ToString("D3");
     }
     ////GETS///////////////////////
     public float GetCurrentTime()
