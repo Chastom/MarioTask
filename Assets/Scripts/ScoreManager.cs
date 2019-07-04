@@ -11,14 +11,15 @@ public class ScoreManager : MonoBehaviour
     public Text scoreText;
     public Text coinText;
     public Text timeText;
-    public PlayerController playerController;
 
     private float currentTime = 0;
     private int score = 0;
     private int coins = 0;
+    private int lastTimeDigit = 0;
 
     private int goombaKillSpreeCounter = 0;
     private float goombaLastKillTimer = 0;
+    private bool lvlFinished = false;
 
     void Awake()
     {
@@ -27,18 +28,28 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        currentTime = currentTime - Time.deltaTime;
-        goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
-
-        if (currentTime <= 0 && !playerController.HasFinished())
+        if (!lvlFinished)
         {
-            //if time runs out while playing cutscene, we do not reload level
-            SceneManager.LoadScene("Level1");
-        }
+            currentTime = currentTime - Time.deltaTime;
+            goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
 
+            if (currentTime <= 0)
+            {
+                SceneManager.LoadScene("Level1");
+            }
+            lastTimeDigit = (int)Math.Truncate(currentTime) % 10;
+        }
+        else
+        {
+            if (Math.Truncate(currentTime) > 0 )
+            {
+                currentTime--;
+                TimeBonus();
+            }
+        }
         //setting UI text to current data
         scoreText.text = score.ToString("D6");
-        coinText.text = coins.ToString("D2");
+        coinText.text = coins.ToString("D2");        
         timeText.text = ((int)Math.Truncate(currentTime)).ToString("D3");
     }
     ////GETS///////////////////////
@@ -86,5 +97,15 @@ public class ScoreManager : MonoBehaviour
     public void Brick()
     {
         score += 50;
+    }
+
+    public void TimeBonus()
+    {
+        score += 50;
+    }
+
+    public void LvlFinished()
+    {
+        lvlFinished = true;
     }
 }

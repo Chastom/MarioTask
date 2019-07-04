@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviour
     /// any velocity and modifying  rigidbody parameters
     /// to exactly match the falling speed of the flag
     /// </summary>
-    public void FinishLevel()
+    public void LvlFinished()
     {
         finishedLvl = true;
         playerAnimator.SetBool("grabbing", true);
@@ -248,11 +248,10 @@ public class PlayerController : MonoBehaviour
         playerRigidbody2D.gravityScale = 1.4f;
         playerRigidbody2D.drag = 1.1f;
         playerRigidbody2D.mass = 0.75f;
-    }
-
-    public bool HasFinished()
-    {
-        return finishedLvl;
+        if (!isFacingRight)
+        {
+            FlipSprite();
+        }        
     }
 
     void FlipSprite()
