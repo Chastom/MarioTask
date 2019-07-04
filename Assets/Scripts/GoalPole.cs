@@ -16,7 +16,7 @@ public class GoalPole : MonoBehaviour
             GetComponent<AudioSource>().Play();
 
             collision.collider.GetComponent<PlayerController>().LvlFinished(); //Telling player object about finished level
-            scoreManager.LvlFinished(); //Doing the same to scoreManager obj
+            scoreManager.SetFinishTime(); //Fixating time when Mario jumps on the pole
 
             flag.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
@@ -31,5 +31,8 @@ public class GoalPole : MonoBehaviour
         flag.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
 
         timelineController.PlayCutscene();
+
+        //Waiting for cutscene to playout before calling the next one
+        timelineController.Invoke("PlayFireworks", 5.9f);               
     } 
 }

@@ -926,12 +926,12 @@ PrefabInstance:
     - target: {fileID: 6259401338590989829, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 114.75
+      value: 115.31
       objectReference: {fileID: 0}
     - target: {fileID: 6259401338590989829, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.65
+      value: 6.75
       objectReference: {fileID: 0}
     - target: {fileID: 6259401338590989829, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
         type: 3}
@@ -8293,7 +8293,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1411377533}
   - component: {fileID: 1411377532}
-  - component: {fileID: 1411377531}
   - component: {fileID: 1411377534}
   m_Layer: 0
   m_Name: Timeline
@@ -8302,25 +8301,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1411377531
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1411377530}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!320 &1411377532
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -8427,6 +8407,12 @@ MonoBehaviour:
   smallMario: {fileID: 11400000, guid: b0d98da7e671ca44f8f6446dbd85c1a7, type: 2}
   bigMario: {fileID: 11400000, guid: 5262cb67d1d519d419fb6ac18d65ba41, type: 2}
   playerController: {fileID: 1011148699}
+  fireworks:
+  - {fileID: 11400000, guid: 17305b7e599520f4db343ad6a8347074, type: 2}
+  - {fileID: 11400000, guid: 855d184770ff0d0499f11dcf21bc0343, type: 2}
+  - {fileID: 11400000, guid: a8bed956da534384981054dee379602a, type: 2}
+  - {fileID: 11400000, guid: d80e1fc59a74ccb468e78b5e7656eed9, type: 2}
+  scoreManager: {fileID: 75012408}
 --- !u!1 &1416043668 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6772003846309433825, guid: eaf29ac881e51d043a02a4145cdaad8c,
@@ -11293,13 +11279,23 @@ PrefabInstance:
     - target: {fileID: 4314491619219723325, guid: f8d034c77277f494e975ec167470718b,
         type: 3}
       propertyPath: startTimeSeconds
-      value: 550
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4314491619219723325, guid: f8d034c77277f494e975ec167470718b,
         type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1011148699}
+    - target: {fileID: 4314491619219723325, guid: f8d034c77277f494e975ec167470718b,
+        type: 3}
+      propertyPath: timelineController
+      value: 
+      objectReference: {fileID: 1411377534}
+    - target: {fileID: 4314491619219723325, guid: f8d034c77277f494e975ec167470718b,
+        type: 3}
+      propertyPath: playableDirector
+      value: 
+      objectReference: {fileID: 1411377532}
     - target: {fileID: 4314491619219723324, guid: f8d034c77277f494e975ec167470718b,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class ScoreManager : MonoBehaviour
     private int goombaKillSpreeCounter = 0;
     private float goombaLastKillTimer = 0;
     private bool lvlFinished = false;
+    private bool updateOnlyUI = false;
 
     void Awake()
     {
@@ -28,6 +30,9 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
+        ////Checking if there is no Timeline sequence being played
+        //if (playableDirector.state != PlayState.Playing)
+        //{
         if (!lvlFinished)
         {
             currentTime = currentTime - Time.deltaTime;
@@ -37,19 +42,26 @@ public class ScoreManager : MonoBehaviour
             {
                 SceneManager.LoadScene("Level1");
             }
-            lastTimeDigit = (int)Math.Truncate(currentTime) % 10;
         }
-        else
-        {
-            if (Math.Truncate(currentTime) > 0 )
-            {
-                currentTime--;
-                TimeBonus();
-            }
-        }
+        //else if (!updateOnlyUI)
+        //{
+        //    if (Math.Truncate(currentTime) > 0)
+        //    {
+        //        currentTime--;
+        //        TimeBonus();
+        //    }
+        //    else
+        //    {
+        //        updateOnlyUI = true;
+        //        timelineController.PlayFireworks(lastTimeDigit);
+        //        Invoke("FireworkBonus", 0.7f);
+        //    }
+        //}
+        //}
+
         //setting UI text to current data
         scoreText.text = score.ToString("D6");
-        coinText.text = coins.ToString("D2");        
+        coinText.text = coins.ToString("D2");
         timeText.text = ((int)Math.Truncate(currentTime)).ToString("D3");
     }
     ////GETS///////////////////////
@@ -68,12 +80,17 @@ public class ScoreManager : MonoBehaviour
         return coins;
     }
 
+    public int GetLastDigit()
+    {
+        return lastTimeDigit;
+    }
+
     ////OTHER METHODS///////////////
     public void Goomba()
     {
         if (goombaLastKillTimer > 0.5f) //If Goomba was killed more than 0.5 seconds ago, we don't care about it
             goombaKillSpreeCounter = 0;
-		
+
         score += (100 * (2 * goombaKillSpreeCounter)); //More killing, more score
 
         if (goombaKillSpreeCounter == 0) //Score that we add if no Goomba was killed in the last 0.5 seconds
@@ -104,8 +121,28 @@ public class ScoreManager : MonoBehaviour
         score += 50;
     }
 
-    public void LvlFinished()
+    public void SetFinishTime()
     {
         lvlFinished = true;
+        lastTimeDigit = (int)Math.Truncate(currentTime) % 10;
+    }
+
+    public void FireworkBonus()
+    {
+        lastTimeDigit--;
+        score += 500;
+        if (lastTimeDigit > 0)
+        {
+            Invoke("FireworkBonus", 0.5f);
+        }
+    }
+
+    public void CountFinalScore()
+    {
+        while (Math.Truncate(currentTime) > 0)
+        {
+            currentTime--;
+            TimeBonus();
+        }
     }
 }
