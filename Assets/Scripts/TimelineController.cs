@@ -35,7 +35,7 @@ public class TimelineController : MonoBehaviour
     /// </summary>
     public void PlayFireworks()
     {
-        //If bonus for time isn't counted yet, method is called again after 0.02 sec
+        //If bonus for time isn't counted yet, method calls itself after 0.02 sec
         if (Math.Truncate(scoreManager.GetCurrentTime()) > 0)
         {
             Invoke("PlayFireworks", 0.02f);

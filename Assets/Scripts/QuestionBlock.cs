@@ -11,16 +11,23 @@ public class QuestionBlock : MonoBehaviour
     SpriteRenderer rend;
 
     private Animator anim;
+    private BoxCollider2D coll;
 
     private void Awake()
     {
         anim = GetComponentInParent<Animator>();
+        coll = this.gameObject.GetComponentInParent<BoxCollider2D>();
         if (isSecret) //if it's a secret Question block
             anim.SetBool("IsSecret", true);
+
         if (isInvisible) //if it's an invisible Question block we do not render it
         {
             rend = this.gameObject.GetComponentInParent<SpriteRenderer>();
             rend.enabled = false;
+        }
+        else //otherwise we remove effector from collider
+        {
+            coll.usedByEffector = false;
         }
     }
 
@@ -39,7 +46,6 @@ public class QuestionBlock : MonoBehaviour
                 {
                     rend.enabled = true;
                     isInvisible = false;
-                    BoxCollider2D coll = this.gameObject.GetComponentInParent<BoxCollider2D>();
                     coll.usedByEffector = false;
                 }
                 collision.gameObject.GetComponent<PlayerController>().isJumping = false; //Mario can't jump higher
