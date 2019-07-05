@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 774756388567292982}
   - component: {fileID: 774756388567292981}
-  - component: {fileID: 2015994593578771442}
+  - component: {fileID: 8450324929088736659}
   m_Layer: 16
   m_Name: QuestionBlockVisual
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2015994593578771442
+--- !u!95 &8450324929088736659
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -271,3 +271,4 @@ MonoBehaviour:
   prefabToAppear: {fileID: 6520921158129951751, guid: 758dc22360416478e9b8ff630036c687,
     type: 3}
   isSecret: 0
+  isInvisible: 0

@@ -32,6 +32,7 @@ public class GoalPole : MonoBehaviour
 
         timelineController.PlayCutscene();
 
+        scoreManager.CountFinalScore();
         //Waiting for cutscene to playout before calling the next one
         timelineController.Invoke("PlayFireworks", 5.9f);               
     } 

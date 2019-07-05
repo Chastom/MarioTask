@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimeSeconds: 400
-  currentTime: 0
-  score: 0
-  coins: 0
+  scoreText: {fileID: 0}
+  coinText: {fileID: 0}
+  timeText: {fileID: 0}

@@ -21,7 +21,6 @@ public class ScoreManager : MonoBehaviour
     private int goombaKillSpreeCounter = 0;
     private float goombaLastKillTimer = 0;
     private bool lvlFinished = false;
-    private bool updateOnlyUI = false;
 
     void Awake()
     {
@@ -30,9 +29,6 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        ////Checking if there is no Timeline sequence being played
-        //if (playableDirector.state != PlayState.Playing)
-        //{
         if (!lvlFinished)
         {
             currentTime = currentTime - Time.deltaTime;
@@ -43,22 +39,6 @@ public class ScoreManager : MonoBehaviour
                 SceneManager.LoadScene("Level1");
             }
         }
-        //else if (!updateOnlyUI)
-        //{
-        //    if (Math.Truncate(currentTime) > 0)
-        //    {
-        //        currentTime--;
-        //        TimeBonus();
-        //    }
-        //    else
-        //    {
-        //        updateOnlyUI = true;
-        //        timelineController.PlayFireworks(lastTimeDigit);
-        //        Invoke("FireworkBonus", 0.7f);
-        //    }
-        //}
-        //}
-
         //setting UI text to current data
         scoreText.text = score.ToString("D6");
         coinText.text = coins.ToString("D2");
@@ -139,10 +119,11 @@ public class ScoreManager : MonoBehaviour
 
     public void CountFinalScore()
     {
-        while (Math.Truncate(currentTime) > 0)
+        if (Math.Truncate(currentTime) > 0)
         {
             currentTime--;
             TimeBonus();
+            Invoke("CountFinalScore", 0.02f);
         }
     }
 }
