@@ -250,7 +250,11 @@ public class PlayerController : MonoBehaviour
         if (!isFacingRight)
         {
             FlipSprite();
-        }        
+        }
+        if (poweredUp) //if mario is big, setting player collider position to match the animation
+        {
+            playerCapsuleCollider2D.offset = new Vector2(0, 0.15f);
+        }
     }
 
     void FlipSprite()
